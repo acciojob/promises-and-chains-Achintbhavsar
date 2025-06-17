@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      background: #f7f7f7;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -14,74 +14,81 @@
     }
 
     .form-container {
-      background: white;
-      padding: 30px;
+      background-color: white;
+      padding: 25px 30px;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       width: 300px;
     }
 
+    .form-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
     input {
-      display: block;
-      margin: 15px auto;
+      width: 100%;
       padding: 10px;
-      width: 90%;
+      margin: 10px 0;
+      font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 4px;
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background: #3498db;
+      width: 100%;
+      padding: 10px;
+      background-color: #3498db;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 4px;
+      font-size: 16px;
       cursor: pointer;
     }
 
     button:hover {
-      background: #2980b9;
+      background-color: #2980b9;
     }
   </style>
 </head>
 <body>
 
   <div class="form-container">
-    <h2>Check Voting Eligibility</h2>
+    <h2>Voting Eligibility</h2>
     <form id="voteForm">
       <input type="text" id="name" placeholder="Enter your name" />
       <input type="number" id="age" placeholder="Enter your age" />
-      <button id="btn" type="submit">Submit</button>
+      <button id="btn" type="submit">Check Eligibility</button>
     </form>
   </div>
 
   <script>
     document.getElementById("voteForm").addEventListener("submit", function (e) {
-      e.preventDefault(); // Prevent page reload
+      e.preventDefault(); 
 
       const name = document.getElementById("name").value.trim();
       const age = parseInt(document.getElementById("age").value.trim());
 
+      // Validation check
       if (!name || isNaN(age)) {
         alert("Please enter valid details.");
         return;
       }
 
-      const checkEligibility = new Promise((resolve, reject) => {
+      
+      const checkVotingEligibility = new Promise((resolve, reject) => {
         setTimeout(() => {
           if (age > 18) {
             resolve(`Welcome, ${name}. You can vote.`);
           } else {
             reject(`Oh sorry ${name}. You aren't old enough.`);
           }
-        }, 4000);
-      });
+        }, 4000); 
 
-      checkEligibility
-        .then((message) => alert(message))
-        .catch((message) => alert(message));
+     
+      checkVotingEligibility
+        .then((msg) => alert(msg))
+        .catch((msg) => alert(msg));
     });
   </script>
 
